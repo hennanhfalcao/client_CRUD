@@ -3,7 +3,6 @@ package com.devsuperior.clientcrud.dto;
 import com.devsuperior.clientcrud.entities.Client;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
-import org.springframework.beans.BeanUtils;
 
 import java.time.LocalDate;
 
@@ -19,7 +18,7 @@ public class ClientDTO {
 
     private Double income;
 
-    @PastOrPresent(message = "A data de nascimento não pode ser uma data futura")
+    @PastOrPresent(message = "A data de nascimento não pode ser uma data futura e deve ser no formato AAAA-MM-DD")
     private LocalDate birthDate;
 
     private Integer children;
@@ -28,7 +27,12 @@ public class ClientDTO {
     }
 
     public ClientDTO(Client entity) {
-        BeanUtils.copyProperties(entity, this);
+        id = entity.getId();
+        name = entity.getName();
+        cpf = entity.getCpf();
+        income = entity.getIncome();
+        birthDate = entity.getBirthDate();
+        children = entity.getChildren();
     }
 
     public Long getId() {
