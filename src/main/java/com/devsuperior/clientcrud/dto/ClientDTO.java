@@ -1,6 +1,7 @@
 package com.devsuperior.clientcrud.dto;
 
 import com.devsuperior.clientcrud.entities.Client;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
 
@@ -18,7 +19,7 @@ public class ClientDTO {
 
     private Double income;
 
-    @PastOrPresent(message = "A data de nascimento não pode ser uma data futura e deve ser no formato AAAA-MM-DD")
+    @PastOrPresent(message = "A data de nascimento não pode ser uma data futura")
     private LocalDate birthDate;
 
     private Integer children;
