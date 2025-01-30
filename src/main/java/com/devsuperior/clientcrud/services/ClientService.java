@@ -3,11 +3,9 @@ package com.devsuperior.clientcrud.services;
 import com.devsuperior.clientcrud.dto.ClientDTO;
 import com.devsuperior.clientcrud.entities.Client;
 import com.devsuperior.clientcrud.repositories.ClientRepository;
-import com.devsuperior.clientcrud.services.exceptions.DatabaseException;
 import com.devsuperior.clientcrud.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,6 +33,7 @@ public class ClientService {
 
     @Transactional
     public ClientDTO insert(ClientDTO dto) {
+
         Client entity = new Client();
         copyDtoToEntity(dto, entity);
         entity = clientRepository.save(entity);
@@ -60,6 +59,7 @@ public class ClientService {
         }
         clientRepository.deleteById(id);
     }
+
 
     private void copyDtoToEntity(ClientDTO dto, Client entity) {
         entity.setName(dto.getName());
