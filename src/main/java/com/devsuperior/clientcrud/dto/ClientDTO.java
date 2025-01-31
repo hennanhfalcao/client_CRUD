@@ -1,9 +1,10 @@
 package com.devsuperior.clientcrud.dto;
 
 import com.devsuperior.clientcrud.entities.Client;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.PositiveOrZero;
+import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
@@ -17,6 +18,7 @@ public class ClientDTO {
 
     private String cpf;
 
+    @PositiveOrZero(message = "A renda deve ser maior que zero")
     private Double income;
 
     @PastOrPresent(message = "A data de nascimento não pode ser uma data futura")
